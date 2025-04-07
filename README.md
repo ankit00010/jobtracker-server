@@ -145,12 +145,8 @@ npm run dev
 ## ✨ Author
 
 **Ankit Mishra**  
-📧 ankitmish83@gmail.com  
+📧 ankitmishra.dev11@gmail.com  
 🔗 [LinkedIn](https://linkedin.com/in/ankit00010) | [GitHub](https://github.com/ankit00010)
 
 ---
-
-## 📄 License
-
-This project is licensed under the MIT License.
 
