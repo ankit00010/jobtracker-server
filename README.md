@@ -1,6 +1,13 @@
 # 💼 Axcel Jobs (Job Tracker)
 
-Job Tracker is a full-stack web application designed to help users **track, manage, and stay organized** during their job search journey. With Job Tracker, users can log every job they've applied for, categorize them by status and type, and easily update or review their application progress. The goal is to simplify job tracking and provide a central hub to manage the entire application pipeline effectively.
+**Axcel Jobs** is a **Job Tracker** — a full-stack web application designed to help users **track, manage, and stay organized** during their job search journey.
+
+With Axcel Jobs, users can:
+- Log every job they've applied for
+- Categorize applications by status and type
+- Easily update and review their progress
+
+The goal is to **simplify job tracking** and provide a **central hub** to manage the entire application pipeline efficiently and effectively.
 
 🔗 **Live Preview:** [https://job-tracker-client-plum.vercel.app/login](https://job-tracker-client-plum.vercel.app/login)
 
