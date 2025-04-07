@@ -1,30 +1,34 @@
 # 💼 Axcel Jobs (Job Tracker)
 
-**Axcel Jobs** is a **Job Tracker** — a full-stack web application designed to help users **track, manage, and stay organized** during their job search journey.
+<img src="https://github.com/user-attachments/assets/6f5d884c-bf8a-41b1-953b-de3ffdd4070b" alt="prod3" width="500" height="350"/>
+
+
+**Axcel Jobs** is a full-stack web application built to **streamline and simplify** the job application process. It enables users to efficiently **track**, **manage**, and **stay organized** throughout their job search journey.
 
 With Axcel Jobs, users can:
-- Log every job they've applied for
-- Categorize applications by status and type
-- Easily update and review their progress
+- Log and maintain records of job applications
+- Categorize applications by status and job type
+- Update, edit, and review application progress in real-time
 
-The goal is to **simplify job tracking** and provide a **central hub** to manage the entire application pipeline efficiently and effectively.
+The objective is to offer a **centralized hub** for managing the entire job search pipeline with clarity and ease.
 
-🔗 **Live Preview:** [https://job-tracker-client-plum.vercel.app/login](https://job-tracker-client-plum.vercel.app/login)
+---
 
-🖥️ **Client Repo:** [GitHub - jobtracker-client](https://github.com/ankit00010/jobtracker-client.git)  
-🛠️ **Server Repo:** [GitHub - jobtracker-server](https://github.com/ankit00010/jobtracker-server.git)
+🔗 **Live Preview:** [Axcel Jobs](https://job-tracker-client-plum.vercel.app/login)  
+🖥️ **Client Repo:** [jobtracker-client on GitHub](https://github.com/ankit00010/jobtracker-client.git)  
+🛠️ **Server Repo:** [jobtracker-server on GitHub](https://github.com/ankit00010/jobtracker-server.git)
 
 ---
 
 ## ✨ Features
 
-- ✅ Add a new job entry
-- 📝 Edit and update existing job details
+- ✅ Add new job entries
+- 📝 Edit and update job details
 - ❌ Delete job applications
-- 🔍 Search through job listings
-- 📁 View all job entries in a clean UI
-- 🔃 Pagination for better performance
-- 🧫 Filter by **Job Type** and **Status**
+- 🔍 Search and filter job listings
+- 📁 Organized and intuitive UI for job views
+- 🔃 Pagination for enhanced performance
+- 🧫 Filter by **Job Type** and **Application Status**
 
 ---
 
@@ -106,7 +110,7 @@ prisma
 
 ## 🥪 Local Setup Instructions
 
-### 1. Clone the Repos
+### 1. Clone the Repositories
 ```bash
 git clone https://github.com/ankit00010/jobtracker-client.git
 git clone https://github.com/ankit00010/jobtracker-server.git
@@ -114,19 +118,29 @@ git clone https://github.com/ankit00010/jobtracker-server.git
 
 ### 2. Install Dependencies
 ```bash
+# Client
 cd jobtracker-client
 npm install
 
+# Server
 cd ../jobtracker-server
 npm install
 ```
 
 ### 3. Configure Environment Variables
+
+#### 📦 Server (.env)
 Create a `.env` file in the `jobtracker-server` folder:
 ```env
 DATABASE_URL=postgresql://<username>:<password>@localhost:5432/jobtracker
 JWT_SECRET=your_jwt_secret
 PORT=5000
+```
+
+#### 💻 Client (.env.local)
+Create a `.env.local` file in the `jobtracker-client` folder:
+```env
+SERVER_URL=http://localhost:5000
 ```
 
 ### 4. Run Prisma Migrations
@@ -149,11 +163,9 @@ npm run dev
 
 ---
 
-## ✨ Author
+## 👤 Author
 
 **Ankit Mishra**  
-📧 ankitmishra.dev11@gmail.com  
-🔗[LinkedIn](https://www.linkedin.com/in/ankit-ravindra-mishra-19050121a/)| [GitHub](https://github.com/ankit00010)
-
----
+📧 **Email:** ankitmishra.dev11@gmail.com  
+🔗 Connect with me on [LinkedIn](https://www.linkedin.com/in/ankit-ravindra-mishra-19050121a/) | Check out my work on [GitHub](https://github.com/ankit00010)
 
