@@ -1,4 +1,4 @@
-# 📘 Job Tracker
+# 💼 Axcel Jobs (Job Tracker)
 
 Job Tracker is a full-stack web application designed to help users **track, manage, and stay organized** during their job search journey. With Job Tracker, users can log every job they've applied for, categorize them by status and type, and easily update or review their application progress. The goal is to simplify job tracking and provide a central hub to manage the entire application pipeline effectively.
 
