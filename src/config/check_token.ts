@@ -11,6 +11,7 @@ declare global {
             user?: {
                 userId: string;
                 isUser: boolean;
+                token: string;
             };
         }
     }
@@ -20,6 +21,7 @@ declare global {
 interface JWTPayload {
     userId: string;
     isUser: boolean;
+    token: string;
 }
 
 export class AuthMiddleware {
@@ -34,6 +36,7 @@ export class AuthMiddleware {
         const authHeader = req.headers['authorization'];
         const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
         // console.log("Token :=>", token);
+
 
         if (!token) {
             res.status(401).json({
@@ -56,11 +59,13 @@ export class AuthMiddleware {
                     message: "Invalid token"
                 });
             }
+            console.log("Decoded value", decoded);
 
             const { userId, isUser } = decoded as JWTPayload;
 
             // Attach user info to request
-            req.user = { userId, isUser };
+
+            req.user = { userId, isUser, token };   
             next();
         });
     };
@@ -71,14 +76,14 @@ export class AuthMiddleware {
         res: Response,
         next: NextFunction
     ): void => {
-        if (!req.user?.isUser) {
+        if (!req.user?.userId) {
             res.status(403).json({
                 success: false,
                 message: "Access denied."
             });
             return;
         }
-        
+
         next();
     };
 }

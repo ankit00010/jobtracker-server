@@ -36,16 +36,17 @@ AuthMiddleware.authenticateToken = (req, res, next) => {
                 message: "Invalid token"
             });
         }
+        console.log("Decoded value", decoded);
         const { userId, isUser } = decoded;
         // Attach user info to request
-        req.user = { userId, isUser };
+        req.user = { userId, isUser, token };
         next();
     });
 };
 // Middleware to check if user is a valid user
 AuthMiddleware.isUser = (req, res, next) => {
     var _a;
-    if (!((_a = req.user) === null || _a === void 0 ? void 0 : _a.isUser)) {
+    if (!((_a = req.user) === null || _a === void 0 ? void 0 : _a.userId)) {
         res.status(403).json({
             success: false,
             message: "Access denied."

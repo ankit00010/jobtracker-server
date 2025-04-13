@@ -4,7 +4,9 @@ export interface UserModel {
     id: string;
     name: string;
     email: string;
-    password?: string
+    googleID?: string | null;
+    profilePicture?: string | null;
+    password?: string | null;
     createdAt: Date;
 }
 

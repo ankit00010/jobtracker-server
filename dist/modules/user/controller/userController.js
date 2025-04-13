@@ -21,6 +21,7 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const userID = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;
+                console.log("did we got the user id", userID);
                 const { title, company, status, appliedSite, salary, jobType, date, location, contactInfo } = req.body;
                 if (!userID) {
                     res.status(403).json({ code: 403, title: "ACCESS_DENIED", message: "No User Id Found" });
@@ -86,6 +87,7 @@ class UserController {
             try {
                 const { page, limit, status, jobType } = req.query;
                 const user_id = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;
+                console.log("did we got the user id", user_id);
                 if (!user_id) {
                     throw new error_1.default(400, "ACCESS_DENIED", "User Id not Found");
                 }
@@ -102,6 +104,7 @@ class UserController {
                     status: status,
                     jobType: jobType
                 };
+                //get list with pagination and filter
                 const getList = yield user_repository_1.default.getUsersJobsList(paginationData, user_id);
                 return res.status(200).json({ code: 200, title: "SUCCESS", message: "GOT IT", getList });
             }

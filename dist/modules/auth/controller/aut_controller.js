@@ -24,10 +24,6 @@ class AuthController {
                 if (!name || !email || !password) {
                     throw new error_1.default(400, "VALIDATION ERROR", "Invalid Fields");
                 }
-                const isExists = yield auth_repository_1.default.isUserExists(email);
-                if (isExists) {
-                    throw new error_1.default(409, "CONFLICT", "User already exists");
-                }
                 const saltRounds = 10;
                 const hashedPassword = yield bcrypt_1.default.hash(password, saltRounds);
                 yield auth_repository_1.default.createUserData(name, email, hashedPassword);
@@ -114,6 +110,47 @@ class AuthController {
                 }
                 else {
                     return res.status(500).json({
+                        code: 500,
+                        title: "Internal Server Error",
+                        message: "An unknown error occurred",
+                    });
+                }
+            }
+        });
+    }
+    static handleGoogleLoginSuccess(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { user, token } = req.user;
+                console.log("Token check", token);
+                console.log("User check", user);
+                if (user && token) {
+                    return res.status(200).redirect(`${process.env.CLIENT_URL}/verify-user?token=${token}`);
+                }
+                else {
+                    res.status(400).send('Authentication failed');
+                }
+            }
+            catch (error) {
+                // Handle known errors thrown within the application
+                if (error instanceof error_1.default) {
+                    res.status(error.code).json({
+                        code: error.code,
+                        title: error.title,
+                        message: error.message,
+                    });
+                }
+                else if (error instanceof Error) {
+                    // Handle unexpected errors
+                    res.status(500).json({
+                        code: 500,
+                        title: "Internal Server Error",
+                        message: error.message,
+                    });
+                }
+                else {
+                    // Handle unknown errors
+                    res.status(500).json({
                         code: 500,
                         title: "Internal Server Error",
                         message: "An unknown error occurred",

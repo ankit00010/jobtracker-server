@@ -23,11 +23,6 @@ class AuthController {
             }
 
 
-            const isExists = await AuthRepository.isUserExists(email);
-
-            if (isExists) {
-                throw new ThrowError(409, "CONFLICT", "User already exists");
-            }
             const saltRounds = 10
 
             const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -90,7 +85,7 @@ class AuthController {
             }
 
             console.log(userData.id);
-            
+
 
             // Verify password
             const verifyUser = await bcrypt.compare(password, userData.password);
@@ -100,7 +95,7 @@ class AuthController {
             const SECRET_KEY = process.env.JWT_SECRET || ""; // Use env for security
             const EXPIRES_IN = "1d"; // Token expiration time
             const payload = {
-                userId:userData.id,
+                userId: userData.id,
                 isUser: true, // or false
             };
             const token = jwt.sign(payload, SECRET_KEY, { expiresIn: EXPIRES_IN });
@@ -138,7 +133,51 @@ class AuthController {
 
 
 
-   
+    static async handleGoogleLoginSuccess(req: Request, res: Response): Promise<void> {
+        try {
+
+            const { user, token } = req.user as any;
+
+            console.log("Token check", token);
+            console.log("User check", user);
+
+            if (user && token) {
+
+               return  res.status(200).redirect(`${process.env.CLIENT_URL}/verify-user?token=${token}`);
+            } else {
+                res.status(400).send('Authentication failed');
+            }
+        } catch (error) {
+            // Handle known errors thrown within the application
+            if (error instanceof ThrowError) {
+                res.status(error.code).json({
+                    code: error.code,
+                    title: error.title,
+                    message: error.message,
+                });
+            } else if (error instanceof Error) {
+                // Handle unexpected errors
+                res.status(500).json({
+                    code: 500,
+                    title: "Internal Server Error",
+                    message: error.message,
+                });
+            } else {
+                // Handle unknown errors
+                res.status(500).json({
+                    code: 500,
+                    title: "Internal Server Error",
+                    message: "An unknown error occurred",
+                });
+            }
+        }
+    }
+
+
+
+
+
+
 
 
 

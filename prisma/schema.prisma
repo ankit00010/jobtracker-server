@@ -8,12 +8,14 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String   @db.VarChar(255)
-  email     String   @unique
-  password  String   @db.VarChar(255)
-  createdAt DateTime @default(now())
-  jobs      JOBS[]   @relation("UserJobs")
+  id             String   @id @default(uuid())
+  name           String   @db.VarChar(255)
+  email          String   @unique
+  password       String?  @db.VarChar(255)
+  createdAt      DateTime @default(now())
+  googleID       String?  @unique
+  profilePicture String?
+  jobs           JOBS[]   @relation("UserJobs")
 }
 
 model JOBS {

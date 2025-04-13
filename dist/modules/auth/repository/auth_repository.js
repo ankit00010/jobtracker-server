@@ -20,19 +20,48 @@ class AuthRepository {
             const user = yield prismaClient_1.prisma.user.findUnique({
                 where: { email }
             });
+            if (!user) {
+                throw new error_1.default(404, "NOT_FOUND", "User Does not exists");
+            }
             return user;
         });
     }
     static createUserData(name, email, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield prismaClient_1.prisma.user.create({
-                data: { name, email, password },
+            let user = yield prismaClient_1.prisma.user.findUnique({
+                where: { email }
             });
             if (!user) {
-                throw new error_1.default(500, "FAILURE", "Failed to register the user");
+                user = yield prismaClient_1.prisma.user.create({
+                    data: { name, email, password },
+                });
             }
             console.log("✅ User created successfully:", user);
             return user;
+        });
+    }
+    static handleGoogleCheck(profile) {
+        var _a, _b, _c;
+        return __awaiter(this, void 0, void 0, function* () {
+            const email = (_b = (_a = profile.emails) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.value;
+            let user = yield prismaClient_1.prisma.user.findUnique({
+                where: { email }
+            });
+            if (!user) {
+                user = yield prismaClient_1.prisma.user.create({
+                    data: {
+                        googleID: profile.id,
+                        email: ((_c = profile.emails) === null || _c === void 0 ? void 0 : _c[0].value) || '',
+                        name: profile.displayName || '',
+                    },
+                });
+            }
+            const userData = {
+                email: user.email,
+                id: user.id,
+                isUser: true
+            };
+            return userData;
         });
     }
 }

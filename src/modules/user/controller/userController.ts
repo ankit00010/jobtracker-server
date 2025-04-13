@@ -12,6 +12,9 @@ class UserController {
     ): Promise<any> {
         try {
             const userID = req.user?.userId;
+
+            console.log("did we got the user id", userID);
+
             const {
                 title,
                 company,
@@ -99,6 +102,7 @@ class UserController {
             const { page, limit, status, jobType } = req.query;
             const user_id = req.user?.userId
 
+            console.log("did we got the user id", user_id);
 
 
             if (!user_id) {
@@ -241,7 +245,7 @@ class UserController {
 
 
 
-            const result = await UserRepository.searchJobRepository(searchTerm as string,userID);
+            const result = await UserRepository.searchJobRepository(searchTerm as string, userID);
 
 
             return res.status(200).json({ code: 200, title: "SUCCESS", data: result })
@@ -412,7 +416,7 @@ class UserController {
             }
 
 
-           return  res.status(200).json({ code: 200, title: "SUCCESS", message: "User Already Login" });
+            return res.status(200).json({ code: 200, title: "SUCCESS", message: "User Already Login" });
 
         } catch (error) {
             if (error instanceof ThrowError) {

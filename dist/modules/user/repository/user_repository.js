@@ -42,6 +42,7 @@ class UserRepository {
                     id: userID
                 }
             });
+            //If user does not exists
             if (!userExists) {
                 throw new error_1.default(400, "NOT_FOUND", "User Does not exists");
             }
