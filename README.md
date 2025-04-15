@@ -1,9 +1,9 @@
-# 💼 Axcel Jobs (Job Tracker)
+# 💼 Jobvity (Job Tracker)
 
 <img src="https://github.com/user-attachments/assets/6f5d884c-bf8a-41b1-953b-de3ffdd4070b" alt="prod3" width="500" height="350"/>
 
 
-**Axcel Jobs** is a full-stack web application built to **streamline and simplify** the job application process. It enables users to efficiently **track**, **manage**, and **stay organized** throughout their job search journey.
+**Jobvity** is a full-stack web application built to **streamline and simplify** the job application process. It enables users to efficiently **track**, **manage**, and **stay organized** throughout their job search journey.
 
 With Axcel Jobs, users can:
 - Log and maintain records of job applications
